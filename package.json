@@ -1,0 +1,15 @@
+{
+  "name": "game-catalog",
+  "version": "1.0.0",
+  "main": "dist/electron/main.js",
+  "scripts": {
+    "build:electron": "tsc -p tsconfig.json",
+    "start": "npm run build:electron && electron ."
+  },
+  "dependencies": {
+    "electron": "^40.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
