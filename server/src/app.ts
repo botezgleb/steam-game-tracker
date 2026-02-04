@@ -18,9 +18,8 @@ async function start() {
     await sequelize.authenticate();
     console.log("DB connected");
 
-    sequelize.sync({ force: true }).then(() => {
-      console.log("DB synced");
-    });
+    await sequelize.sync();
+    console.log("DB synced");
 
     app.listen(3001, () => {
       console.log("Server started on http://localhost:3001");

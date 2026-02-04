@@ -38,19 +38,22 @@ export async function importSteamGames(userId: number, steamId: string) {
       },
     });
 
-    await UserGame.findOrCreate({
-      where: {
-        userId,
-        gameId: game.id,
-      },
+    const [userGame, created] = await UserGame.findOrCreate({
+      where: { userId, gameId: game.id },
       defaults: {
         userId,
         gameId: game.id,
-        status:
-          g.playtime_forever > 0 ? GameStatus.PLAYING : GameStatus.PLANNED,
+        status: GameStatus.PLANNED, // 👈 ВСЕГДА
         playtimeMinutes: g.playtime_forever,
       },
     });
+
+    // ✅ обновляем ТОЛЬКО playtime
+    if (!created) {
+      await userGame.update({
+        playtimeMinutes: g.playtime_forever,
+      });
+    }
   }
 
   return games.length;
