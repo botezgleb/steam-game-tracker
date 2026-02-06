@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getUser, getUserGames, updateUserGame } from "./api";
 import type { GameStatus, UserGame } from "./api";
 import videoBg from "../public/video-bg.mp4";
+import mainBg from "../public/gradient-bg.mp4"
 import { slides } from "./consts";
 import "./App.css";
 
@@ -177,10 +178,23 @@ export default function App() {
 
   return (
     <div className="page">
+      <div className="page-bg-container">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className="page-video-bg"
+          src={mainBg}
+        />
+        <div className="page-bg-overlay"></div>
+        <div className="page-bg-blur"></div>
+      </div>
+      
       <header className="header">
         <div className="user">
           <img className="avatar" src={avatarUrl || "/avatar-placeholder.png"} alt="avatar" />
-          <div>
+          <div className="user-info">
             <div className="name">{userName}</div>
             <div className="subtitle">Моя библиотека Steam</div>
           </div>

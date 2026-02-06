@@ -242,15 +242,19 @@ body {
 }
 
 .avatar {
-  width: 72px;
-  height: 72px;
+  width: 172px;
+  height: 172px;
   border-radius: 18px;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.05);
 }
 
+.user-info {
+  margin-top: 33%;
+}
+
 .name {
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 800;
   letter-spacing: 0.2px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -368,20 +372,22 @@ body {
 
 .games {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
 .game {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 12px;
-  padding: 14px;
+  padding: 10px;
   border-radius: 18px;
   border: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   transition: transform 0.2s, border-color 0.2s;
+  /* height: 100%; */
 }
 
 .game:hover {
@@ -391,14 +397,18 @@ body {
 
 .game-img {
   width: 100%;
-  height: 170px;
+  min-height: 140px; /* минимальная высота карточки с картинкой */
   object-fit: cover;
   border-radius: 14px;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.05);
+  display: block;
+  background-size: contain; /* для пустых картинок */
+  background-position: center;
+  background-repeat: no-repeat;
 }
-
 .game-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -615,6 +625,45 @@ body {
   text-align: left;
 }
 
+.page-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.page-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.2);
+}
+
+.page-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11, 15, 25, 0.6);
+}
+
+.page-bg-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 @media (max-width: 1024px) {
   .carousel {
     height: 500px;
@@ -627,7 +676,7 @@ body {
   .slide-description {
     font-size: 14px;
   }
-
+  
   .login-container {
     flex-direction: column;
     height: auto;
@@ -777,8 +826,8 @@ body {
   }
   
   .avatar {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
   }
   
   .name {
@@ -809,4 +858,10 @@ body {
   .carousel-dots {
     bottom: 10px;
   }
+
+  .user-info {
+    margin-top: 0;
+  }
+
 }
+
