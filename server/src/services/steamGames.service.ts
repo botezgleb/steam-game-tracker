@@ -43,12 +43,11 @@ export async function importSteamGames(userId: number, steamId: string) {
       defaults: {
         userId,
         gameId: game.id,
-        status: GameStatus.PLANNED, // 👈 ВСЕГДА
+        status: GameStatus.PLANNED, 
         playtimeMinutes: g.playtime_forever,
       },
     });
 
-    // ✅ обновляем ТОЛЬКО playtime
     if (!created) {
       await userGame.update({
         playtimeMinutes: g.playtime_forever,
